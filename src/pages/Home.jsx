@@ -4,15 +4,15 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-[#f9fafb]">
       {/* Hero Section - Modern Marketplace Style */}
-      <section className="hero relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-indigo-50">
+      <section className="hero relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100">
         {/* Animated Background Shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Floating Shape 1 */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-200 rounded-full blur-3xl opacity-40 animate-float"></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-slate-200 rounded-full blur-3xl opacity-40 animate-float"></div>
           {/* Floating Shape 2 */}
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-200 rounded-full blur-3xl opacity-40 animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-slate-300 rounded-full blur-3xl opacity-40 animate-float" style={{ animationDelay: '1s' }}></div>
           {/* Floating Shape 3 */}
-          <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-purple-200 rounded-full blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-slate-200 rounded-full blur-3xl opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
           {/* Grid Pattern */}
           <div className="absolute inset-0 bg-grid opacity-50"></div>
         </div>
@@ -21,11 +21,11 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm text-violet-700 rounded-full text-sm font-medium mb-8 shadow-lg shadow-violet-500/10 border border-violet-100 animate-fade-in">
-              <span className="w-2 h-2 bg-violet-600 rounded-full mr-2 animate-pulse"></span>
+            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm text-slate-700 rounded-full text-sm font-medium mb-8 shadow-lg shadow-slate-500/10 border border-slate-100 animate-fade-in">
+              <span className="w-2 h-2 bg-slate-600 rounded-full mr-2 animate-pulse"></span>
               Premium Digital Products
             </div>
-            
+
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-gray-900 mb-6 animate-fade-in stagger-1">
               Discover{' '}
@@ -34,16 +34,16 @@ const Home = () => {
               </span>{' '}
               Digital Products
             </h1>
-            
+
             {/* Subtitle */}
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 animate-fade-in stagger-2">
               High-quality templates, UI kits, and digital assets to accelerate your next project.
               Instant download after purchase.
             </p>
-            
+
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in stagger-3">
-              <a 
+              <a
                 href="#products"
                 className="btn-glow inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-xl shadow-glow"
               >
@@ -52,9 +52,9 @@ const Home = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a 
+              <a
                 href="#features"
-                className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-all duration-300 hover:-translate-y-1 shadow-soft hover:shadow-medium"
+                className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:border-slate-300 hover:text-slate-600 transition-all duration-300 hover:-translate-y-1 shadow-soft hover:shadow-medium"
               >
                 Learn More
               </a>
@@ -69,9 +69,9 @@ const Home = () => {
               { label: 'Downloads', value: '50K+', icon: '⬇️' },
               { label: '5-Star Reviews', value: '4.9', icon: '⭐' },
             ].map((stat, index) => (
-              <div 
+              <div
                 key={index}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-soft border border-gray-100 hover:shadow-medium hover:border-violet-200 transition-all duration-300 hover:-translate-y-1"
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-soft border border-gray-100 hover:shadow-medium hover:border-slate-200 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-1">
                   {stat.value}
@@ -86,9 +86,9 @@ const Home = () => {
       {/* Featured Products Section */}
       <section id="products" className="featured py-20 bg-white relative">
         {/* Background Decoration */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-violet-100 rounded-full blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-100 rounded-full blur-3xl opacity-50 translate-x-1/2 translate-y-1/2"></div>
-        
+        <div className="absolute top-0 left-0 w-64 h-64 bg-slate-100 rounded-full blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-slate-100 rounded-full blur-3xl opacity-50 translate-x-1/2 translate-y-1/2"></div>
+
         {/* Centered Container */}
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
@@ -99,7 +99,7 @@ const Home = () => {
               Explore our collection of premium digital products crafted by talented designers and developers.
             </p>
           </div>
-        
+
           <ProductList />
         </div>
       </section>
@@ -108,8 +108,8 @@ const Home = () => {
       <section id="features" className="bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20 relative overflow-hidden">
         {/* Background Shapes */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-violet-100 rounded-full blur-3xl opacity-50"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-slate-100 rounded-full blur-3xl opacity-50"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-slate-100 rounded-full blur-3xl opacity-50"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -152,11 +152,11 @@ const Home = () => {
                 description: 'Our support team is available around the clock to help you with any questions.'
               }
             ].map((feature, index) => (
-              <div 
-                key={index} 
-                className="bg-white p-8 rounded-2xl hover:shadow-medium transition-all duration-300 border border-gray-100 hover:border-violet-200 hover:-translate-y-2 group"
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl hover:shadow-medium transition-all duration-300 border border-gray-100 hover:border-slate-200 hover:-translate-y-2 group"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-violet-100 to-indigo-100 text-violet-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 text-slate-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -172,20 +172,20 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-violet-600 via-indigo-600 to-violet-600 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-slate-700 via-slate-800 to-slate-700 relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 bg-[length:200%_auto] animate-gradient"></div>
-        
+
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Get Started?
           </h2>
-          <p className="text-violet-100 text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-slate-300 text-lg mb-8 max-w-xl mx-auto">
             Join thousands of satisfied customers and find the perfect digital product for your next project.
           </p>
-          <a 
+          <a
             href="#products"
-            className="inline-flex items-center px-8 py-4 bg-white text-violet-600 font-semibold rounded-xl hover:bg-violet-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-flex items-center px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             Browse Products Now
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

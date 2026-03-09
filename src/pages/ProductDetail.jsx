@@ -15,7 +15,7 @@ const ProductDetail = () => {
       try {
         setLoading(true);
         const productData = await fetchProductById(id);
-        
+
         if (productData) {
           setProduct(productData);
         } else if (demoProducts.find(p => p.id === id)) {
@@ -44,9 +44,9 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-violet-200 border-t-violet-600 rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-slate-200 border-t-slate-600 rounded-full animate-spin"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <svg className="w-6 h-6 text-violet-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-slate-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
@@ -65,9 +65,9 @@ const ProductDetail = () => {
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Product Not Found</h2>
         <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
-        <Link 
-          to="/" 
-          className="px-6 py-3 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors"
+        <Link
+          to="/"
+          className="px-6 py-3 bg-slate-600 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors"
         >
           Back to Home
         </Link>
@@ -80,9 +80,9 @@ const ProductDetail = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <Link to="/" className="hover:text-violet-600 transition-colors">Home</Link>
+          <Link to="/" className="hover:text-slate-600 transition-colors">Home</Link>
           <span>/</span>
-          <Link to="/#products" className="hover:text-violet-600 transition-colors">Products</Link>
+          <Link to="/#products" className="hover:text-slate-600 transition-colors">Products</Link>
           <span>/</span>
           <span className="text-gray-900 font-medium">{product.name}</span>
         </nav>
@@ -99,7 +99,7 @@ const ProductDetail = () => {
             </div>
             {product.category && (
               <div className="absolute top-4 left-4">
-                <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-violet-600 font-semibold rounded-full shadow-md">
+                <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-600 font-semibold rounded-full shadow-md">
                   {product.category}
                 </span>
               </div>
@@ -113,7 +113,7 @@ const ProductDetail = () => {
                 {product.name}
               </h1>
               <div className="flex items-center space-x-4">
-                <span className="text-4xl font-bold text-violet-600">
+                <span className="text-4xl font-bold text-slate-600">
                   {formatPrice(product.price)}
                 </span>
                 <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">

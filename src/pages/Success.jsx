@@ -38,17 +38,17 @@ const Success = () => {
         <div className="text-center mb-8">
           <div className="relative inline-block">
             <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center animate-bounce">
-              <svg 
-                className="w-12 h-12 text-green-600" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-12 h-12 text-green-600"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M5 13l4 4L19 7" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
                 />
               </svg>
             </div>
@@ -141,9 +141,9 @@ const Success = () => {
 
         {/* Continue Shopping */}
         <div className="mt-8 text-center">
-          <Link 
-            to="/" 
-            className="inline-flex items-center space-x-2 text-violet-600 hover:text-violet-700 font-medium transition-colors"
+          <Link
+            to="/"
+            className="inline-flex items-center space-x-2 text-slate-600 hover:text-slate-700 font-medium transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

@@ -18,18 +18,18 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-violet-600/20 group-hover:shadow-violet-600/40 transition-all duration-300 group-hover:scale-105">
-                <svg 
-                  className="w-5 h-5 md:w-6 md:h-6 text-white" 
-                  fill="none" 
-                  stroke="currentColor" 
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg shadow-slate-600/20 group-hover:shadow-slate-600/40 transition-all duration-300 group-hover:scale-105">
+                <svg
+                  className="w-5 h-5 md:w-6 md:h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M13 10V3L4 14h7v7l9-11h-7z" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
               </div>
@@ -42,13 +42,13 @@ const Navbar = () => {
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link 
+              <Link
                 key={link.name}
-                to={link.path} 
-                className="px-4 py-2.5 text-gray-600 hover:text-violet-600 font-medium text-sm rounded-lg hover:bg-violet-50 transition-all duration-200 relative group"
+                to={link.path}
+                className="px-4 py-2.5 text-gray-600 hover:text-slate-600 font-medium text-sm rounded-lg hover:bg-slate-50 transition-all duration-200 relative group"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-violet-600 transition-all duration-200 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-slate-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
@@ -65,9 +65,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button 
+            <button
               type="button"
-              className="p-2.5 rounded-xl text-gray-600 hover:text-violet-600 hover:bg-violet-50 transition-all duration-200"
+              className="p-2.5 rounded-xl text-gray-600 hover:text-slate-600 hover:bg-slate-50 transition-all duration-200"
               aria-label="Toggle menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -86,7 +86,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <div 
+      <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
@@ -94,10 +94,10 @@ const Navbar = () => {
         <div className="px-4 py-4 bg-white border-t border-gray-100 shadow-lg">
           <div className="space-y-2">
             {navLinks.map((link) => (
-              <Link 
+              <Link
                 key={link.name}
                 to={link.path}
-                className="block px-4 py-3 text-gray-700 hover:text-violet-600 hover:bg-violet-50 rounded-xl font-medium transition-colors"
+                className="block px-4 py-3 text-gray-700 hover:text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
@@ -107,7 +107,7 @@ const Navbar = () => {
               <Link
                 to="/#products"
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full px-4 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-medium text-center rounded-xl hover:from-violet-700 hover:to-indigo-700 transition-colors shadow-lg shadow-violet-600/25"
+                className="block w-full px-4 py-3 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-medium text-center rounded-xl hover:from-slate-700 hover:to-slate-800 transition-colors shadow-lg shadow-slate-600/25"
               >
                 Browse Products
               </Link>
