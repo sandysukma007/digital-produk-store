@@ -16,24 +16,29 @@ export default async function handler(req, res) {
     }
 
     // Midtrans Server Key (from Midtrans Dashboard)
-    // Replace with your actual Midtrans Server Key or use environment variable
-    const MIDTRANS_SERVER_KEY = process.env.MIDTRANS_SERVER_KEY || 'your-midtrans-server-key-here';
-    
+    // Use environment variable - make sure it's set in Vercel!
+    const MIDTRANS_SERVER_KEY = process.env.MIDTRANS_SERVER_KEY;
+
+    if (!MIDTRANS_SERVER_KEY) {
+      console.error('MIDTRANS_SERVER_KEY is not configured');
+      return res.status(500).json({ error: 'Payment server key not configured' });
+    }
+
     // Generate unique order ID
     const orderId = `ORDER-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
     // Prepare transaction details
     const transactionDetails = {
       order_id: orderId,
-      gross_amount: price
+      gross_amount: parseInt(price)
     };
 
     // Prepare item details
     const itemDetails = [
       {
-        id: productId,
-        name: productName,
-        price: price,
+        id: String(productId),
+        name: String(productName),
+        price: parseInt(price),
         quantity: 1
       }
     ];
@@ -65,6 +70,14 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
+    // Log for debugging
+    console.log('Midtrans Response:', data);
+
+    if (!response.ok) {
+      console.error('Midtrans API Error:', data);
+      return res.status(response.status).json({ error: 'Failed to create transaction', details: data });
+    }
+
     if (data.token) {
       // Return snap token to frontend
       res.status(200).json({
@@ -73,7 +86,7 @@ export default async function handler(req, res) {
         orderId: orderId
       });
     } else {
-      console.error('Midtrans Error:', data);
+      console.error('Midtrans Error (no token):', data);
       res.status(500).json({ error: 'Failed to create transaction', details: data });
     }
 

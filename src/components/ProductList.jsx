@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ProductCard from './ProductCard';
 import { fetchProducts } from '../services/firebase';
 import { demoProducts, getCategories } from '../data/products';
@@ -8,6 +8,7 @@ const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const scrollContainerRef = useRef(null);
 
   const categories = getCategories();
 
@@ -32,9 +33,22 @@ const ProductList = () => {
   const displayProducts = products.length > 0 ? products : demoProducts;
 
   // Filter products by category
-  const filteredProducts = selectedCategory === 'All' 
-    ? displayProducts 
+  const filteredProducts = selectedCategory === 'All'
+    ? displayProducts
     : displayProducts.filter(product => product.category === selectedCategory);
+
+  // Scroll functions for category filter
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+    }
+  };
 
   if (loading) {
     return (
@@ -61,7 +75,7 @@ const ProductList = () => {
           </svg>
         </div>
         <p className="text-gray-600 font-medium">{error}</p>
-        <button 
+        <button
           onClick={() => window.location.reload()}
           className="mt-4 px-6 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-lg hover:from-violet-700 hover:to-indigo-700 transition-all duration-200 shadow-lg shadow-violet-600/25"
         >
@@ -73,29 +87,62 @@ const ProductList = () => {
 
   return (
     <div>
-      {/* Category Filter */}
-      <div className="mt-8">
-        <div className="flex flex-wrap justify-center gap-3">
-          {categories.map((category) => (
+      {/* Category Filter - Horizontal Scrollable */}
+      <div className="mt-8 relative">
+        {/* Scroll Left Button */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-violet-600 hover:shadow-xl transition-all duration-300 hidden md:flex"
+          aria-label="Scroll left"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Scroll Right Button */}
+        <button
+          onClick={scrollRight}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-violet-600 hover:shadow-xl transition-all duration-300 hidden md:flex"
+          aria-label="Scroll right"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Category Pills - Scrollable Container */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-3 overflow-x-auto pb-4 px-4 md:px-12 scrollbar-hide snap-x"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {categories.map((category, index) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`pill-button ${
+              className={`flex-shrink-0 px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 snap-start ${
                 selectedCategory === category
-                  ? 'pill-button-active'
-                  : 'pill-button-inactive'
+                  ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-600/30 scale-105'
+                  : 'bg-white text-gray-600 border border-gray-200 hover:border-violet-300 hover:text-violet-600 hover:shadow-lg hover:shadow-violet-500/20'
               }`}
             >
               {category}
+              {index === 0 && (
+                <span className="ml-1 text-xs opacity-75"></span>
+              )}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Products Grid */}
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Products Grid - 4 columns on desktop */}
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {filteredProducts.map((product, index) => (
-          <div 
+          <div
             key={product.id}
             className="animate-fade-in"
             style={{ animationDelay: `${index * 0.05}s` }}
@@ -114,7 +161,7 @@ const ProductList = () => {
             </svg>
           </div>
           <p className="text-gray-500 text-lg">No products found in this category.</p>
-          <button 
+          <button
             onClick={() => setSelectedCategory('All')}
             className="mt-4 px-6 py-2 text-violet-600 font-medium hover:text-violet-700"
           >

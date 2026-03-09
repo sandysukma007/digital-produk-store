@@ -9,7 +9,7 @@ export const loadMidtransScript = () => {
       resolve();
       return;
     }
-    
+
     const script = document.createElement('script');
     script.src = 'https://app.midtrans.com/snap/snap.js';
     script.setAttribute('data-client-key', MIDTRANS_CLIENT_KEY);
@@ -23,7 +23,7 @@ export const loadMidtransScript = () => {
 export const initializePayment = async (snapToken, onSuccess, onError, onPending) => {
   try {
     await loadMidtransScript();
-    
+
     window.snap.pay(snapToken, {
       onSuccess: (result) => {
         console.log('Payment success:', result);
@@ -50,6 +50,8 @@ export const initializePayment = async (snapToken, onSuccess, onError, onPending
 // Create transaction via backend API
 export const createTransaction = async (productId, productName, price) => {
   try {
+    console.log('Creating transaction with:', { productId, productName, price });
+
     const response = await fetch('/api/create-transaction', {
       method: 'POST',
       headers: {
@@ -61,12 +63,16 @@ export const createTransaction = async (productId, productName, price) => {
         price
       })
     });
-    
-    if (!response.ok) {
-      throw new Error('Failed to create transaction');
-    }
-    
+
     const data = await response.json();
+
+    console.log('API Response:', response.status, data);
+
+    if (!response.ok) {
+      const errorMessage = data.error || data.details || 'Failed to create transaction';
+      throw new Error(errorMessage);
+    }
+
     return data;
   } catch (error) {
     console.error('Error creating transaction:', error);
