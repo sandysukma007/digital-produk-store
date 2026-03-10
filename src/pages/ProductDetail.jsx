@@ -76,7 +76,7 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 pt-28 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
@@ -89,21 +89,23 @@ const ProductDetail = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image */}
-          <div className="relative">
-            <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src={product.image || 'https://via.placeholder.com/800x600?text=Product+Image'}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {product.category && (
-              <div className="absolute top-4 left-4">
-                <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-600 font-semibold rounded-full shadow-md">
-                  {product.category}
-                </span>
+          <div className="flex justify-center lg:justify-start items-start">
+            <div className="relative w-full max-w-md lg:max-w-sm xl:max-w-md">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+                <img
+                  src={product.image || 'https://via.placeholder.com/800x600?text=Product+Image'}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
-            )}
+              {product.category && (
+                <div className="absolute top-4 left-4">
+                  <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-600 font-semibold rounded-full shadow-md">
+                    {product.category}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Product Details */}

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import Success from './pages/Success';
 import Cancel from './pages/Cancel';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Cancel />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
         <Footer />
