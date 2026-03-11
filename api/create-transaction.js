@@ -8,11 +8,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { productId, productName, price } = req.body;
+    const { productId, productName, price, email } = req.body;
 
     // Validate required fields
-    if (!productId || !productName || !price) {
-      return res.status(400).json({ error: 'Missing required fields: productId, productName, price' });
+    if (!productId || !productName || !price || !email) {
+      return res.status(400).json({ error: 'Missing required fields: productId, productName, price, email' });
     }
 
     // Midtrans Server Key (from Midtrans Dashboard)
@@ -46,9 +46,9 @@ export default async function handler(req, res) {
     // Prepare customer details
     const customerDetails = {
       first_name: 'Customer',
-      last_name: 'Buyer',
-      email: 'customer@example.com',
-      phone: '+62812345678'
+      last_name: '',
+      email: email,
+      phone: ''
     };
 
     // Prepare full transaction request

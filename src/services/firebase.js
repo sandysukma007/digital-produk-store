@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, setDoc, increment } from 'firebase/firestore';
 
 // Firebase configuration - from user provided config
 const firebaseConfig = {
@@ -146,6 +146,21 @@ export const updateOrderStatus = async (orderId, statusData) => {
   } catch (error) {
     console.error('Error updating order: ', error);
     throw error;
+  }
+};
+
+// Increment product sold count
+export const incrementProductSoldCount = async (productId, quantity = 1) => {
+  try {
+    const productRef = doc(db, 'products', productId);
+    await updateDoc(productRef, {
+      sold: increment(quantity)
+    });
+    return true;
+  } catch (error) {
+    console.error(`Error incrementing sold count for product ${productId}:`, error);
+    // Don't throw, we don't want to break the whole flow if this fails
+    return false;
   }
 };
 

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import { fetchProductById } from '../services/firebase';
 import { demoProducts, formatPrice } from '../data/products';
 import CheckoutButton from '../components/CheckoutButton';
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -99,10 +101,18 @@ const ProductDetail = () => {
                 />
               </div>
               {product.category && (
-                <div className="absolute top-4 left-4">
-                  <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-600 font-semibold rounded-full shadow-md">
+                <div className="absolute top-4 left-4 flex flex-col gap-2">
+                  <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-slate-600 font-semibold rounded-full shadow-md w-fit">
                     {product.category}
                   </span>
+                  {product.sold !== undefined && product.sold > 0 && (
+                    <span className="px-3 py-1.5 bg-orange-500/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full shadow-md w-fit flex items-center space-x-1">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                      <span>{product.sold} Terjual</span>
+                    </span>
+                  )}
                 </div>
               )}
             </div>
@@ -145,9 +155,22 @@ const ProductDetail = () => {
               </div>
             )}
 
-            {/* Checkout Button */}
-            <div className="pt-6 border-t border-gray-200">
-              <CheckoutButton product={product} />
+            {/* Checkout Options */}
+            <div className="pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={() => addToCart(product)}
+                className="group/cart flex-1 py-4 px-6 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-all duration-300 flex items-center justify-center space-x-2 shadow-sm"
+              >
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover/cart:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v4m0 0v4m0-4h4m-4 0H8" />
+                </svg>
+                <span>Tambah ke Keranjang</span>
+              </button>
+              
+              <div className="flex-1">
+                <CheckoutButton product={product} />
+              </div>
             </div>
 
             {/* Additional Info */}

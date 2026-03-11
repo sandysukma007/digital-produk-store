@@ -48,9 +48,9 @@ export const initializePayment = async (snapToken, onSuccess, onError, onPending
 };
 
 // Create transaction via backend API
-export const createTransaction = async (productId, productName, price) => {
+export const createTransaction = async (productId, productName, price, email) => {
   try {
-    console.log('Creating transaction with:', { productId, productName, price });
+    console.log('Creating transaction with:', { productId, productName, price, email });
 
     const response = await fetch('/api/create-transaction', {
       method: 'POST',
@@ -60,7 +60,8 @@ export const createTransaction = async (productId, productName, price) => {
       body: JSON.stringify({
         productId,
         productName,
-        price
+        price,
+        email
       })
     });
 
