@@ -128,7 +128,10 @@ const CartDrawer = () => {
                 isCartCheckout: true,
                 cartItems: cartItems
               }} 
-              onSuccessCallback={() => setIsCartOpen(false)}
+              onSuccessCallback={() => {
+                clearCart();
+                setIsCartOpen(false);
+              }}
             />
           </div>
         )}

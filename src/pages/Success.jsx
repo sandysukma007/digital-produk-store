@@ -11,7 +11,13 @@ const Success = () => {
     const storedResult = localStorage.getItem('paymentResult');
 
     if (storedProduct) {
-      setProduct(JSON.parse(storedProduct));
+      const parsedProduct = JSON.parse(storedProduct);
+      setProduct(parsedProduct);
+      
+      // If this was a cart checkout, clear the cart from localStorage
+      if (parsedProduct.isCartCheckout) {
+        localStorage.removeItem('shoppingCart');
+      }
     }
     if (storedResult) {
       setPaymentResult(JSON.parse(storedResult));
