@@ -35,7 +35,7 @@ const Admin = () => {
       const data = await fetchProducts();
       setProducts(data);
     } catch (error) {
-      showMessage('Failed to load products', 'error');
+      showMessage('Gagal memuat produk', 'error');
     } finally {
       setLoading(false);
     }
@@ -69,12 +69,12 @@ const Admin = () => {
       if (editingId) {
         // Update
         await updateProduct(editingId, productData);
-        showMessage('Product updated successfully', 'success');
+        showMessage('Produk berhasil diperbarui', 'success');
         setEditingId(null);
       } else {
         // Create - using name as the document ID to match Firestore screenshot structure, or auto id.
         await addProduct(productData, formData.name); 
-        showMessage('Product added successfully', 'success');
+        showMessage('Produk berhasil ditambahkan', 'success');
       }
 
       // Reset form and reload
@@ -82,7 +82,7 @@ const Admin = () => {
       await loadProducts();
     } catch (error) {
       console.error(error);
-      showMessage('Error saving product', 'error');
+      showMessage('Terjadi kesalahan saat menyimpan produk', 'error');
     } finally {
       setFormLoading(false);
     }
@@ -102,13 +102,13 @@ const Admin = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
+    if (window.confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
       try {
         await deleteProduct(id);
-        showMessage('Product deleted', 'success');
+        showMessage('Produk dihapus', 'success');
         await loadProducts();
       } catch (error) {
-        showMessage('Failed to delete product', 'error');
+        showMessage('Gagal menghapus produk', 'error');
       }
     }
   };
@@ -145,9 +145,9 @@ const Admin = () => {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Dasbor Admin</h1>
           <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg font-medium shadow-sm">
-            Total Products: {products.length}
+            Total Produk: {products.length}
           </span>
         </div>
 
@@ -165,12 +165,12 @@ const Admin = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-soft p-6 border border-gray-100 sticky top-24">
               <h2 className="text-xl font-semibold text-gray-800 mb-6 border-b pb-4">
-                {editingId ? 'Edit Product' : 'Add New Product'}
+                {editingId ? 'Edit Produk' : 'Tambah Produk Baru'}
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nama Produk *</label>
                   <input
                     type="text"
                     name="name"
@@ -178,14 +178,14 @@ const Admin = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
-                    placeholder="e.g. 52 Skin Retouching Preset"
+                    placeholder="Contoh: 52 Skin Retouching Preset"
                     disabled={editingId !== null} // Prevent changing ID since we use name as ID for new creations
                   />
-                  {editingId && <p className="text-xs text-gray-500 mt-1">Name cannot be changed during edit as it acts as the Document ID in some schemas.</p>}
+                  {editingId && <p className="text-xs text-gray-500 mt-1">Nama tidak bisa diubah saat diedit karena berfungsi sebagai ID Dokumen.</p>}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Kategori *</label>
                   <input
                     type="text"
                     name="category"
@@ -193,13 +193,13 @@ const Admin = () => {
                     value={formData.category}
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
-                    placeholder="e.g. Template Lightroom"
+                    placeholder="Contoh: Template Lightroom"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Price *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Harga *</label>
                     <input
                       type="number"
                       name="price"
@@ -209,24 +209,24 @@ const Admin = () => {
                       value={formData.price}
                       onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
-                      placeholder="e.g. 1"
+                      placeholder="Contoh: 1"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Tipe</label>
                     <input
                       type="text"
                       name="type"
                       value={formData.type}
                       onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
-                      placeholder="e.g. digital"
+                      placeholder="Contoh: digital"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">File Download URL *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">URL Unduhan File *</label>
                   <input
                     type="url"
                     name="file_url"
@@ -239,16 +239,16 @@ const Admin = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">URL Gambar</label>
                   <input
                     type="url"
                     name="image"
                     value={formData.image}
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-slate-500 outline-none transition-all"
-                    placeholder="Leave empty for default picsum image"
+                    placeholder="Biarkan kosong untuk gambar default"
                   />
-                  <p className="text-xs text-slate-500 mt-1">If blank, defaults to https://picsum.photos/400</p>
+                  <p className="text-xs text-slate-500 mt-1">Jika kosong, defaultnya https://picsum.photos/400</p>
                 </div>
 
                 <div className="pt-4 flex gap-3">
@@ -257,7 +257,7 @@ const Admin = () => {
                     disabled={formLoading}
                     className="flex-1 bg-slate-800 text-white py-2.5 px-4 rounded-lg font-medium hover:bg-slate-700 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {formLoading ? 'Saving...' : (editingId ? 'Update Product' : 'Add Product')}
+                    {formLoading ? 'Menyimpan...' : (editingId ? 'Perbarui Produk' : 'Tambah Produk')}
                   </button>
                   
                   {editingId && (
@@ -266,7 +266,7 @@ const Admin = () => {
                       onClick={cancelEdit}
                       className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
                     >
-                      Cancel
+                      Batal
                     </button>
                   )}
                 </div>
@@ -278,7 +278,7 @@ const Admin = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-soft border border-gray-100 overflow-hidden">
               <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <h2 className="text-xl font-semibold text-gray-800">Products Inventory</h2>
+                <h2 className="text-xl font-semibold text-gray-800">Inventaris Produk</h2>
                 
                 {/* Search & Filter Controls */}
                 <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-3">
@@ -288,7 +288,7 @@ const Admin = () => {
                     </svg>
                     <input
                       type="text"
-                      placeholder="Search products..."
+                      placeholder="Cari produk..."
                       value={searchQuery}
                       onChange={(e) => {
                         setSearchQuery(e.target.value);
@@ -319,21 +319,21 @@ const Admin = () => {
                 </div>
               ) : products.length === 0 ? (
                 <div className="p-12 text-center text-gray-500">
-                  No products found in Firebase. Start adding some!
+                  Belum ada produk di Firebase. Mulai tambahkan!
                 </div>
               ) : filteredProducts.length === 0 ? (
                 <div className="p-12 text-center text-gray-500">
-                  No matching products found. Try adjusting your search or filter.
+                  Produk tidak ditemukan. Coba sesuaikan pencarian atau filter Anda.
                 </div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="bg-gray-50 text-gray-600 text-sm">
-                        <th className="p-4 font-semibold border-b">Image & Name</th>
-                        <th className="p-4 font-semibold border-b">Category</th>
-                        <th className="p-4 font-semibold border-b">Price</th>
-                        <th className="p-4 font-semibold border-b text-right">Actions</th>
+                        <th className="p-4 font-semibold border-b">Gambar & Nama</th>
+                        <th className="p-4 font-semibold border-b">Kategori</th>
+                        <th className="p-4 font-semibold border-b">Harga</th>
+                        <th className="p-4 font-semibold border-b text-right">Aksi</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -392,7 +392,7 @@ const Admin = () => {
                   {totalPages > 1 && (
                     <div className="p-4 border-t border-gray-100 bg-gray-50/50 flex items-center justify-between">
                       <span className="text-sm text-gray-500">
-                        Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredProducts.length)} of {filteredProducts.length} entries
+                        Menampilkan {indexOfFirstItem + 1} hingga {Math.min(indexOfLastItem, filteredProducts.length)} dari {filteredProducts.length} entri
                       </span>
                       <div className="flex gap-1">
                         <button
@@ -400,7 +400,7 @@ const Admin = () => {
                           disabled={currentPage === 1}
                           className="px-3 py-1 rounded text-sm font-medium border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50"
                         >
-                          Prev
+                          Sebel
                         </button>
                         {Array.from({ length: totalPages }).map((_, i) => (
                           <button
@@ -420,7 +420,7 @@ const Admin = () => {
                           disabled={currentPage === totalPages}
                           className="px-3 py-1 rounded text-sm font-medium border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50"
                         >
-                          Next
+                          Lanjut
                         </button>
                       </div>
                     </div>

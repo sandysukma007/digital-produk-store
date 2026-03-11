@@ -22,7 +22,7 @@ const ProductDetail = () => {
           // Use demo product if not found in Firebase
           setProduct(demoProducts.find(p => p.id === id));
         } else {
-          setError('Product not found');
+          setError('Produk tidak ditemukan');
         }
       } catch (err) {
         console.error('Error loading product:', err);
@@ -30,7 +30,7 @@ const ProductDetail = () => {
         if (demoProducts.find(p => p.id === id)) {
           setProduct(demoProducts.find(p => p.id === id));
         } else {
-          setError('Failed to load product');
+          setError('Gagal memuat produk');
         }
       } finally {
         setLoading(false);
@@ -63,13 +63,13 @@ const ProductDetail = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Product Not Found</h2>
-        <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Produk Tidak Ditemukan</h2>
+        <p className="text-gray-600 mb-6">Produk yang Anda cari tidak ada.</p>
         <Link
           to="/"
           className="px-6 py-3 bg-slate-600 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors"
         >
-          Back to Home
+          Kembali ke Beranda
         </Link>
       </div>
     );
@@ -80,9 +80,9 @@ const ProductDetail = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <Link to="/" className="hover:text-slate-600 transition-colors">Home</Link>
+          <Link to="/" className="hover:text-slate-600 transition-colors">Beranda</Link>
           <span>/</span>
-          <Link to="/#products" className="hover:text-slate-600 transition-colors">Products</Link>
+          <Link to="/#products" className="hover:text-slate-600 transition-colors">Produk</Link>
           <span>/</span>
           <span className="text-gray-900 font-medium">{product.name}</span>
         </nav>
@@ -119,7 +119,7 @@ const ProductDetail = () => {
                   {formatPrice(product.price)}
                 </span>
                 <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
-                  Instant Download
+                  Unduhan Instan
                 </span>
               </div>
             </div>
@@ -131,7 +131,7 @@ const ProductDetail = () => {
             {/* Features */}
             {product.features && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">What's Included:</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Apa Saja yang Didapat:</h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.features.map((feature, index) => (
                     <li key={index} className="flex items-center space-x-3 text-gray-600">
@@ -156,19 +156,19 @@ const ProductDetail = () => {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <span>Secure Payment</span>
+                <span>Pembayaran Aman</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                <span>30-Day Refund</span>
+                <span>Pengembalian Dana 30 Hari</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
-                <span>24/7 Support</span>
+                <span>Dukungan 24/7</span>
               </div>
             </div>
           </div>

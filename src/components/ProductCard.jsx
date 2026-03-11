@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
     ? description.length > 70
       ? description.substring(0, 70) + '...'
       : description
-    : 'High-quality digital product for your projects';
+    : 'Produk digital berkualitas tinggi untuk proyek Anda';
 
   return (
     <div className="group relative bg-white rounded-2xl overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-slate-500/20 hover:-translate-y-2 border border-gray-100 hover:border-slate-200">
@@ -44,7 +44,7 @@ const ProductCard = ({ product }) => {
             to={`/product/${id}`}
             className="px-6 py-3 bg-white text-gray-900 font-semibold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-slate-600 hover:text-white shadow-xl"
           >
-            View Details
+            Lihat Detail
           </Link>
         </div>
 
@@ -65,7 +65,7 @@ const ProductCard = ({ product }) => {
         {/* Price and Buy Button */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
           <div className="flex flex-col">
-            <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Price</span>
+            <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Harga</span>
             <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-slate-700">
               {formatPrice(price)}
             </span>
@@ -87,7 +87,7 @@ const ProductCard = ({ product }) => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span>Buy Now</span>
+            <span>Beli Sekarang</span>
           </Link>
         </div>
       </div>

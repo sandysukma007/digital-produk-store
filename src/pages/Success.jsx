@@ -27,7 +27,7 @@ const Success = () => {
       window.open(product.file_url, '_blank');
     } else {
       // Demo download link
-      alert('Download will be available once you configure Firebase Storage with your product files.');
+      alert('Unduhan akan tersedia setelah Anda mengonfigurasi Firebase Storage dengan file produk Anda.');
     }
   };
 
@@ -63,10 +63,10 @@ const Success = () => {
         {/* Success Message */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Payment Successful!
+            Pembayaran Berhasil!
           </h1>
           <p className="text-xl text-gray-600">
-            Thank you for your purchase. Your order has been confirmed.
+            Terima kasih atas pembelian Anda. Pesanan Anda telah dikonfirmasi.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ const Success = () => {
         {product && (
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4">
-              <h2 className="text-white font-semibold text-lg">Order Details</h2>
+              <h2 className="text-white font-semibold text-lg">Detail Pesanan</h2>
             </div>
             <div className="p-6">
               <div className="flex items-start space-x-4 mb-6">
@@ -104,15 +104,15 @@ const Success = () => {
                 <div className="border-t border-gray-200 pt-4 mt-4">
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <p className="text-gray-500">Transaction ID</p>
+                      <p className="text-gray-500">ID Transaksi</p>
                       <p className="font-medium text-gray-900">
                         {paymentResult.transaction_id || 'N/A'}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gray-500">Payment Method</p>
+                      <p className="text-gray-500">Metode Pembayaran</p>
                       <p className="font-medium text-gray-900">
-                        {paymentResult.payment_type || 'Credit Card'}
+                        {paymentResult.payment_type || 'Kartu Kredit'}
                       </p>
                     </div>
                   </div>
@@ -131,11 +131,11 @@ const Success = () => {
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            <span>Download Your Product</span>
+            <span>Unduh Produk Anda</span>
           </button>
 
           <p className="text-sm text-gray-500">
-            A download link has also been sent to your email address.
+            Tautan unduhan juga telah dikirimkan ke alamat email Anda.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ const Success = () => {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            <span>Continue Shopping</span>
+            <span>Lanjutkan Belanja</span>
           </Link>
         </div>
       </div>

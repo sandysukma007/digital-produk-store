@@ -27,29 +27,29 @@ const Cancel = () => {
 
         {/* Cancel Message */}
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Payment Cancelled
+          Pembayaran Dibatalkan
         </h1>
         <p className="text-xl text-gray-600 mb-8">
-          Your payment was cancelled and no charge has been made to your account.
+          Pembayaran Anda dibatalkan dan tidak ada biaya yang ditagihkan ke akun Anda.
         </p>
 
         {/* What to do next */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            What would you like to do next?
+            Apa yang ingin Anda lakukan selanjutnya?
           </h2>
           <div className="space-y-4">
             <Link
               to="/"
               className="block w-full px-6 py-4 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-semibold rounded-xl hover:from-slate-700 hover:to-slate-800 transition-all duration-300"
             >
-              Browse Products
+              Jelajahi Produk
             </Link>
             <button
               onClick={() => window.history.back()}
               className="block w-full px-6 py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-colors"
             >
-              Try Again
+              Coba Lagi
             </button>
           </div>
         </div>
@@ -57,7 +57,7 @@ const Cancel = () => {
         {/* Help Section */}
         <div className="text-gray-500">
           <p className="mb-2">
-            Need help? Contact our support team.
+            Butuh bantuan? Hubungi tim dukungan kami.
           </p>
           <a
             href="mailto:support@digistore.com"

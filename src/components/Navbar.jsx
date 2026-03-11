@@ -5,10 +5,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Products', path: '/#products' },
-    { name: 'Features', path: '/#features' },
-    { name: 'About', path: '/#about' },
+    { name: 'Beranda', path: '/' },
+    { name: 'Produk', path: '/#products' },
+    { name: 'Fitur', path: '/#features' },
+    { name: 'Tentang', path: '/#about' },
   ];
 
   return (
@@ -59,7 +59,7 @@ const Navbar = () => {
               to="/#products"
               className="btn-glow px-6 py-2.5 text-white font-medium text-sm rounded-xl"
             >
-              Browse Products
+              Jelajahi Produk
             </Link>
           </div>
 
@@ -104,13 +104,13 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="pt-2">
-              <Link
-                to="/#products"
-                onClick={() => setIsMenuOpen(false)}
-                className="block w-full px-4 py-3 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-medium text-center rounded-xl hover:from-slate-700 hover:to-slate-800 transition-colors shadow-lg shadow-slate-600/25"
-              >
-                Browse Products
-              </Link>
+                <Link
+                  to="/#products"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full px-4 py-3 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-medium text-center rounded-xl hover:from-slate-700 hover:to-slate-800 transition-colors shadow-lg shadow-slate-600/25"
+                >
+                  Jelajahi Produk
+                </Link>
             </div>
           </div>
         </div>

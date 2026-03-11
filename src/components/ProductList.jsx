@@ -21,7 +21,7 @@ const ProductList = () => {
         const productsData = await fetchProducts();
         setProducts(productsData);
       } catch (err) {
-        setError('Failed to load products. Please try again later.');
+        setError('Gagal memuat produk. Silakan coba lagi nanti.');
         console.error('Error loading products:', err);
       } finally {
         setLoading(false);
@@ -81,7 +81,7 @@ const ProductList = () => {
             </svg>
           </div>
         </div>
-        <p className="mt-4 text-gray-600 font-medium">Loading products...</p>
+        <p className="mt-4 text-gray-600 font-medium">Memuat produk...</p>
       </div>
     );
   }
@@ -99,7 +99,7 @@ const ProductList = () => {
           onClick={() => window.location.reload()}
           className="mt-4 px-6 py-2 bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-lg hover:from-slate-700 hover:to-slate-800 transition-all duration-200 shadow-lg"
         >
-          Try Again
+          Coba Lagi
         </button>
       </div>
     );
@@ -118,7 +118,7 @@ const ProductList = () => {
           <input
             type="text"
             className="block w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all shadow-sm"
-            placeholder="Search products..."
+            placeholder="Cari produk..."
             value={searchQuery}
             onChange={(e) => {
               setSearchQuery(e.target.value);
@@ -204,7 +204,7 @@ const ProductList = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
             </svg>
           </div>
-          <p className="text-gray-500 text-lg">No products found.</p>
+          <p className="text-gray-500 text-lg">Tidak ada produk yang ditemukan.</p>
           <button
             onClick={() => {
               setSelectedCategory('All');
@@ -213,7 +213,7 @@ const ProductList = () => {
             }}
             className="mt-4 px-6 py-2 text-slate-600 font-medium hover:text-slate-700"
           >
-            Clear filters
+            Hapus filter
           </button>
         </div>
       )}
@@ -230,7 +230,7 @@ const ProductList = () => {
                 : 'bg-white text-gray-700 hover:bg-slate-50 hover:text-slate-600 shadow-sm border border-gray-200'
             }`}
           >
-            Previous
+            Sebelumnya
           </button>
           
           <div className="flex space-x-1 overflow-x-auto max-w-[200px] sm:max-w-none scrollbar-hide px-1" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
@@ -258,7 +258,7 @@ const ProductList = () => {
                 : 'bg-white text-gray-700 hover:bg-slate-50 hover:text-slate-600 shadow-sm border border-gray-200'
             }`}
           >
-            Next
+            Selanjutnya
           </button>
         </div>
       )}

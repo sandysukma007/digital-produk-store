@@ -23,22 +23,22 @@ const Home = () => {
             {/* Badge */}
             <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm text-slate-700 rounded-full text-sm font-medium mb-8 shadow-lg shadow-slate-500/10 border border-slate-100 animate-fade-in">
               <span className="w-2 h-2 bg-slate-600 rounded-full mr-2 animate-pulse"></span>
-              Premium Digital Products
+              Produk Digital Premium
             </div>
 
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-gray-900 mb-6 animate-fade-in stagger-1">
-              Discover{' '}
+              Temukan{' '}
               <span className="text-gradient-animated">
-                Premium
+                Produk
               </span>{' '}
-              Digital Products
+              Digital Premium
             </h1>
 
             {/* Subtitle */}
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 animate-fade-in stagger-2">
-              High-quality templates, UI kits, and digital assets to accelerate your next project.
-              Instant download after purchase.
+              Template berkualitas tinggi, UI kit, dan aset digital untuk mempercepat proyek Anda.
+              Unduhan instan setelah pembelian.
             </p>
 
             {/* CTA Buttons */}
@@ -47,7 +47,7 @@ const Home = () => {
                 href="#products"
                 className="btn-glow inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-xl shadow-glow"
               >
-                <span>Browse Products</span>
+                <span>Jelajahi Produk</span>
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -56,7 +56,7 @@ const Home = () => {
                 href="#features"
                 className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl border-2 border-gray-200 hover:border-slate-300 hover:text-slate-600 transition-all duration-300 hover:-translate-y-1 shadow-soft hover:shadow-medium"
               >
-                Learn More
+                Pelajari Lebih Lanjut
               </a>
             </div>
           </div>
@@ -64,10 +64,10 @@ const Home = () => {
           {/* Stats */}
           <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 animate-fade-in stagger-4">
             {[
-              { label: 'Products', value: '500+', icon: '📦' },
-              { label: 'Happy Customers', value: '10K+', icon: '😊' },
-              { label: 'Downloads', value: '50K+', icon: '⬇️' },
-              { label: '5-Star Reviews', value: '4.9', icon: '⭐' },
+              { label: 'Produk', value: '500+', icon: '📦' },
+              { label: 'Pelanggan Puas', value: '10K+', icon: '😊' },
+              { label: 'Unduhan', value: '50K+', icon: '⬇️' },
+              { label: 'Ulasan Bintang 5', value: '4.9', icon: '⭐' },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -93,10 +93,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Featured Products
+              Produk Unggulan
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Explore our collection of premium digital products crafted by talented designers and developers.
+              Jelajahi koleksi produk digital premium kami yang dibuat oleh desainer dan pengembang berbakat.
             </p>
           </div>
 
@@ -115,10 +115,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Why Choose DigiStore?
+              Mengapa Memilih DigiStore?
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              We provide the best digital products with excellent customer support.
+              Kami menyediakan produk digital terbaik dengan dukungan pelanggan yang luar biasa.
             </p>
           </div>
 
@@ -130,8 +130,8 @@ const Home = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                 ),
-                title: 'Instant Download',
-                description: 'Get immediate access to your purchased products. Download anytime, anywhere.'
+                title: 'Unduhan Instan',
+                description: 'Dapatkan akses langsung ke produk yang Anda beli. Unduh kapan saja, di mana saja.'
               },
               {
                 icon: (
@@ -139,8 +139,8 @@ const Home = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 ),
-                title: 'Secure Payments',
-                description: 'All transactions are secured by Midtrans. Your payment information is safe with us.'
+                title: 'Pembayaran Aman',
+                description: 'Semua transaksi diamankan oleh Midtrans. Informasi pembayaran Anda aman bersama kami.'
               },
               {
                 icon: (
@@ -148,8 +148,8 @@ const Home = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 ),
-                title: '24/7 Support',
-                description: 'Our support team is available around the clock to help you with any questions.'
+                title: 'Dukungan 24/7',
+                description: 'Tim dukungan kami tersedia 24 jam untuk membantu Anda dengan pertanyaan apa pun.'
               }
             ].map((feature, index) => (
               <div
@@ -178,16 +178,16 @@ const Home = () => {
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Get Started?
+            Siap untuk Memulai?
           </h2>
           <p className="text-slate-300 text-lg mb-8 max-w-xl mx-auto">
-            Join thousands of satisfied customers and find the perfect digital product for your next project.
+            Bergabunglah dengan ribuan pelanggan yang puas dan temukan produk digital yang tepat untuk proyek Anda selanjutnya.
           </p>
           <a
             href="#products"
             className="inline-flex items-center px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
-            Browse Products Now
+            Jelajahi Produk Sekarang
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
