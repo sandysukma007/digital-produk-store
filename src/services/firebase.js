@@ -101,5 +101,53 @@ export const deleteProduct = async (productId) => {
   }
 };
 
+// Fetch all orders from Firestore
+export const fetchOrders = async () => {
+  try {
+    const ordersRef = collection(db, 'orders');
+    const querySnapshot = await getDocs(ordersRef);
+    
+    const orders = [];
+    querySnapshot.forEach((doc) => {
+      orders.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+    
+    // Sort orders by orderDate descending
+    return orders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    return [];
+  }
+};
+
+// Add a new order
+export const addOrder = async (orderData) => {
+  try {
+    const docRef = await addDoc(collection(db, 'orders'), {
+      ...orderData,
+      orderDate: new Date().toISOString()
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error('Error adding order: ', error);
+    throw error;
+  }
+};
+
+// Update order status
+export const updateOrderStatus = async (orderId, statusData) => {
+  try {
+    const orderRef = doc(db, 'orders', orderId);
+    await updateDoc(orderRef, statusData);
+    return true;
+  } catch (error) {
+    console.error('Error updating order: ', error);
+    throw error;
+  }
+};
+
 export default app;
 

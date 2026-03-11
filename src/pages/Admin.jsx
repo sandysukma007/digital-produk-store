@@ -1,10 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
-import { fetchProducts, addProduct, updateProduct, deleteProduct } from '../services/firebase';
+import { fetchProducts, addProduct, updateProduct, deleteProduct, fetchOrders, updateOrderStatus } from '../services/firebase';
 
 const Admin = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
+  const [activeTab, setActiveTab] = useState('products');
+  const [orders, setOrders] = useState([]);
+  const [loadingOrders, setLoadingOrders] = useState(false);
   
   // Table Filters & Pagination
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,6 +31,34 @@ const Admin = () => {
   useEffect(() => {
     loadProducts();
   }, []);
+
+  useEffect(() => {
+    if (activeTab === 'orders') {
+      loadOrders();
+    }
+  }, [activeTab]);
+
+  const loadOrders = async () => {
+    setLoadingOrders(true);
+    try {
+      const data = await fetchOrders();
+      setOrders(data);
+    } catch (error) {
+      showMessage('Gagal memuat pesanan', 'error');
+    } finally {
+      setLoadingOrders(false);
+    }
+  };
+
+  const handleUpdateOrderStatus = async (orderId, newStatus) => {
+    try {
+      await updateOrderStatus(orderId, { paymentStatus: newStatus });
+      showMessage('Status pesanan diperbarui', 'success');
+      loadOrders();
+    } catch (error) {
+      showMessage('Gagal memperbarui status', 'error');
+    }
+  };
 
   const loadProducts = async () => {
     setLoading(true);
@@ -144,11 +175,43 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-900">Dasbor Admin</h1>
-          <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg font-medium shadow-sm">
-            Total Produk: {products.length}
-          </span>
+          <div className="flex gap-4">
+            {activeTab === 'orders' ? (
+              <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg font-medium shadow-sm">
+                Total Pesanan: {orders.length}
+              </span>
+            ) : (
+              <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg font-medium shadow-sm">
+                Total Produk: {products.length}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex space-x-1 bg-gray-200/50 p-1 rounded-xl w-fit mb-8 shadow-inner">
+          <button
+            onClick={() => setActiveTab('products')}
+            className={`px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
+              activeTab === 'products'
+                ? 'bg-white text-slate-800 shadow-sm'
+                : 'text-gray-500 hover:text-slate-700 hover:bg-white/50'
+            }`}
+          >
+            Manajemen Produk
+          </button>
+          <button
+            onClick={() => setActiveTab('orders')}
+            className={`px-6 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 ${
+              activeTab === 'orders'
+                ? 'bg-white text-slate-800 shadow-sm'
+                : 'text-gray-500 hover:text-slate-700 hover:bg-white/50'
+            }`}
+          >
+            Pesanan Masuk
+          </button>
         </div>
 
         {message.text && (
@@ -159,7 +222,8 @@ const Admin = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {activeTab === 'products' ? (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Form Section */}
           <div className="lg:col-span-1">
@@ -431,6 +495,77 @@ const Admin = () => {
           </div>
           
         </div>
+        ) : (
+          <div className="bg-white rounded-2xl shadow-soft border border-gray-100 overflow-hidden">
+            {/* Orders Section */}
+            <div className="p-6 border-b border-gray-100 bg-gray-50/50">
+              <h2 className="text-xl font-semibold text-gray-800">Daftar Pesanan</h2>
+            </div>
+            
+            {loadingOrders ? (
+              <div className="p-12 flex justify-center">
+                <div className="w-10 h-10 border-4 border-slate-200 border-t-slate-600 rounded-full animate-spin"></div>
+              </div>
+            ) : orders.length === 0 ? (
+              <div className="p-12 text-center text-gray-500">
+                Belum ada pesanan yang masuk.
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-gray-50 text-gray-600 text-sm">
+                      <th className="p-4 font-semibold border-b">Order ID & Tanggal</th>
+                      <th className="p-4 font-semibold border-b">Produk</th>
+                      <th className="p-4 font-semibold border-b">Pelanggan</th>
+                      <th className="p-4 font-semibold border-b">Total</th>
+                      <th className="p-4 font-semibold border-b">Status Pembayaran</th>
+                      <th className="p-4 font-semibold border-b text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {orders.map((order) => (
+                      <tr key={order.id} className="hover:bg-slate-50 transition-colors">
+                        <td className="p-4">
+                          <div className="font-medium text-gray-900">{order.orderId}</div>
+                          <div className="text-xs text-gray-500 mt-0.5">
+                            {new Date(order.orderDate).toLocaleString('id-ID')}
+                          </div>
+                        </td>
+                        <td className="p-4">
+                          {order.items?.map((item, i) => (
+                            <div key={i} className="text-sm text-gray-700">{item.name}</div>
+                          ))}
+                        </td>
+                        <td className="p-4 text-sm text-gray-700">{order.userEmail}</td>
+                        <td className="p-4 font-medium text-gray-900">
+                          Rp {Number(order.totalAmount).toLocaleString('id-ID')}
+                        </td>
+                        <td className="p-4">
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-medium inline-block ${
+                            order.paymentStatus === 'paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+                          }`}>
+                            {order.paymentStatus === 'paid' ? 'Lunas' : 'Tertunda'}
+                          </span>
+                        </td>
+                        <td className="p-4 text-right">
+                          <select
+                            value={order.paymentStatus || 'pending'}
+                            onChange={(e) => handleUpdateOrderStatus(order.id, e.target.value)}
+                            className="bg-white border text-center border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 inline-block p-1.5"
+                          >
+                            <option value="pending">Tertunda</option>
+                            <option value="paid">Lunas</option>
+                          </select>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

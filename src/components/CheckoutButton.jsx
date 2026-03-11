@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { initializePayment, createTransaction } from '../services/midtrans';
+import { addOrder } from '../services/firebase';
 
 const CheckoutButton = ({ product }) => {
   const [loading, setLoading] = useState(false);
@@ -26,8 +27,28 @@ const CheckoutButton = ({ product }) => {
       await initializePayment(
         snapToken,
         // onSuccess
-        (result) => {
+        async (result) => {
           console.log('Payment successful:', result);
+          
+          try {
+            await addOrder({
+              orderId: result.order_id || `ORDER-${Date.now()}`,
+              items: [{
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                productId: product.id
+              }],
+              totalAmount: product.price,
+              paymentMethod: result.payment_type || 'digital',
+              paymentStatus: 'paid',
+              status: 'completed',
+              userEmail: 'customer@example.com'
+            });
+          } catch (e) {
+            console.error('Failed to save order:', e);
+          }
+          
           // Store payment result for success page
           localStorage.setItem('paymentResult', JSON.stringify(result));
           localStorage.setItem('purchasedProduct', JSON.stringify(product));
@@ -40,8 +61,28 @@ const CheckoutButton = ({ product }) => {
           setLoading(false);
         },
         // onPending
-        (result) => {
+        async (result) => {
           console.log('Payment pending:', result);
+          
+          try {
+            await addOrder({
+              orderId: result.order_id || `ORDER-${Date.now()}`,
+              items: [{
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                productId: product.id
+              }],
+              totalAmount: product.price,
+              paymentMethod: result.payment_type || 'digital',
+              paymentStatus: 'pending',
+              status: 'pending',
+              userEmail: 'customer@example.com'
+            });
+          } catch (e) {
+            console.error('Failed to save order:', e);
+          }
+
           localStorage.setItem('paymentResult', JSON.stringify(result));
           window.location.href = '/success';
         }
