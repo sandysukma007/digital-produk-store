@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { initializePayment, createTransaction } from '../services/midtrans';
 import { addOrder, incrementProductSoldCount } from '../services/firebase';
-import { addOrder, incrementProductSoldCount } from '../services/firebase';
-
 const CheckoutButton = ({ product, onSuccessCallback }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
