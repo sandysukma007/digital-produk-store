@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, setDoc, increment } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc, setDoc, increment, onSnapshot } from 'firebase/firestore';
 
 // Firebase configuration - from user provided config
 const firebaseConfig = {
@@ -149,7 +149,6 @@ export const updateOrderStatus = async (orderId, statusData) => {
   }
 };
 
-// Increment product sold count
 export const incrementProductSoldCount = async (productId, quantity = 1) => {
   try {
     const productRef = doc(db, 'products', productId);
@@ -159,8 +158,48 @@ export const incrementProductSoldCount = async (productId, quantity = 1) => {
     return true;
   } catch (error) {
     console.error(`Error incrementing sold count for product ${productId}:`, error);
-    // Don't throw, we don't want to break the whole flow if this fails
     return false;
+  }
+};
+// Real-time listener for global stats
+export const listenToStats = (callback) => {
+  try {
+    const productsRef = collection(db, 'products');
+    const ordersRef = collection(db, 'orders');
+    
+    // This is a simplified approach, for large data you might want a aggregation document
+    const unsubProducts = onSnapshot(productsRef, (snapshot) => {
+      const productCount = snapshot.size;
+      const downloads = snapshot.docs.reduce((acc, doc) => acc + (doc.data().sold || 0), 0);
+      
+      callback({ 
+        products: productCount,
+        downloads: downloads
+      });
+    });
+
+    const unsubOrders = onSnapshot(ordersRef, (snapshot) => {
+      const orderCount = snapshot.size;
+      callback({ satisfiedCustomers: orderCount });
+    });
+
+    // Rating is usually static or from a specific config doc
+    const unsubStats = onSnapshot(doc(db, 'metadata', 'global_stats'), (docSnap) => {
+      if (docSnap.exists()) {
+        callback({ rating: docSnap.data().rating || 4.9 });
+      } else {
+        callback({ rating: 4.9 });
+      }
+    });
+
+    return () => {
+      unsubProducts();
+      unsubOrders();
+      unsubStats();
+    };
+  } catch (error) {
+    console.error('Error listening to stats:', error);
+    return () => {};
   }
 };
 

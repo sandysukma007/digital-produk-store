@@ -1,6 +1,33 @@
+import { useState, useEffect } from 'react';
 import ProductList from '../components/ProductList';
+import { listenToStats } from '../services/firebase';
 
 const Home = () => {
+  const [stats, setStats] = useState({
+    products: '500+',
+    satisfiedCustomers: '10K+',
+    downloads: '50K+',
+    rating: '4.9'
+  });
+
+  useEffect(() => {
+    const unsubscribe = listenToStats((newStats) => {
+      setStats(prev => ({
+        ...prev,
+        ...newStats
+      }));
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const statsData = [
+    { label: 'Produk', value: stats.products.toString().includes('+') ? stats.products : `${stats.products}+`, icon: '📦' },
+    { label: 'Pelanggan Puas', value: stats.satisfiedCustomers.toString().includes('+') ? stats.satisfiedCustomers : `${stats.satisfiedCustomers}+`, icon: '😊' },
+    { label: 'Unduhan', value: stats.downloads.toString().includes('+') ? stats.downloads : `${stats.downloads}+`, icon: '⬇️' },
+    { label: 'Ulasan Bintang 5', value: stats.rating, icon: '⭐' },
+  ];
+
   return (
     <div className="min-h-screen bg-[#f9fafb]">
       {/* Hero Section - Modern Marketplace Style */}
@@ -61,14 +88,9 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Stats Section in Home.jsx */}
           <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 animate-fade-in stagger-4">
-            {[
-              { label: 'Produk', value: '500+', icon: '📦' },
-              { label: 'Pelanggan Puas', value: '10K+', icon: '😊' },
-              { label: 'Unduhan', value: '50K+', icon: '⬇️' },
-              { label: 'Ulasan Bintang 5', value: '4.9', icon: '⭐' },
-            ].map((stat, index) => (
+            {statsData.map((stat, index) => (
               <div
                 key={index}
                 className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-soft border border-gray-100 hover:shadow-medium hover:border-slate-200 transition-all duration-300 hover:-translate-y-1"
