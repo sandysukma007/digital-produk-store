@@ -21,19 +21,11 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg shadow-slate-600/20 group-hover:shadow-slate-600/40 transition-all duration-300 group-hover:scale-105">
-                <svg
-                  className="w-5 h-5 md:w-6 md:h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
+                <img 
+                  src="/logo.png" 
+                  alt="DigiStore Logo" 
+                  className="w-full h-full object-contain p-1 rounded-xl"
+                />
               </div>
               <span className="text-xl md:text-2xl font-bold text-gradient">
                 DigiStore
